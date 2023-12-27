@@ -20,9 +20,10 @@
 <meta name='robots' content='max-image-preview:large' />
 <link rel='stylesheet' id='bootstrap-css' href='<?php $this->options->themeUrl('assets/css/bootstrap.min.css'); ?>' type='text/css' media='all' />
 <link rel='stylesheet' id='bifont-css' href='<?php $this->options->themeUrl('assets/css/bootstrap-icons.css'); ?>' type='text/css' media='all' />
-<link rel='stylesheet' id='stylecss-css' href='<?php $this->options->themeUrl('assets/css/style.css'); ?>' type='text/css' media='all' />
-<!-- <link rel='stylesheet' id='stylecss-css' href='<?php $this->options->themeUrl('assets/css/comments.css'); ?>' type='text/css' media='all' /> -->
+<link rel='stylesheet' id='stylecss-css' href='<?php $this->options->themeUrl('assets/css/style.css?ver=2.0.1'); ?>' type='text/css' media='all' />
+<link rel='stylesheet' id='stylecss-css' href='<?php $this->options->themeUrl('assets/css/comments.css?ver=2.0.1'); ?>' type='text/css' media='all' />
 <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/jquery.min.js'); ?>" id="jquery-min-js"></script>
+<?php echo $this->options->statistics?:''; ?>
 <?php $this->header(); ?>
 <?php $bannerIdsArr = explode(",", $this->options->bannerIds);?>
 </head>
@@ -42,7 +43,7 @@
 			<div class="top_right">
 				<nav class="header-menu">
                     <ul class="header-menu-ul">
-                        <li id="menu-item-1504" class="menu-item menu-item-type-custom menu-item-object-custom <?php if($this->is('index')): ?>current-menu-item<?php endif; ?> current_page_item menu-item-home"><a href="<?php $this->options->siteUrl(); ?>" aria-current="page">首页</a></li>
+                        <li id="menu-item-home class="menu-item menu-item-type-custom menu-item-object-custom <?php if($this->is('index')): ?>current-menu-item<?php endif; ?> current_page_item menu-item-home"><a href="<?php $this->options->siteUrl(); ?>" aria-current="page">首页</a></li>
                         <?php $this->widget('Widget_Metas_Category_List')->to($categorys); ?>
                         <?php while($categorys->next()): ?>
                         <?php if ($categorys->levels === 0): ?>

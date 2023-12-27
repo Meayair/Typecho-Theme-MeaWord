@@ -1,7 +1,6 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; 
 $this->need('common/header.php');
 ?>
-
 <section class="post-loop">
     <div class="container">
         <div class="post-box">
@@ -21,14 +20,12 @@ $this->need('common/header.php');
                     <span><?php $this->date(); ?></span>
                 </div>
             </div>
-			<article class="wznrys">
+			<article class="meapost">
                 <?php $this->content(); ?>
 			</article>
             <div class="post_tag">           
-                 <div class="mt-4"><i class="iconfont icon-tags"></i><?php $this->tags('', true, '<span>暂无标签</span>'); ?></div>
             </div>
             <div class="post-next-prev row">
-                <?php theNextPrev($this); ?>
             </div>
             <?php $this->need('common/comments.php'); ?>
         </div>

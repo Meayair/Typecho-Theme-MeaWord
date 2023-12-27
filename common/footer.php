@@ -6,6 +6,7 @@
         <?php if($this->options->beianNum):?>
         <p><a class="beian" href="https://beian.miit.gov.cn/" rel="external nofollow" target="_blank" title="备案号"><i class="bi bi-shield-check me-1"></i><?php $this->options->beianNum()?></a></p>
         <?php endif?>
+        <?php echo $this->options->footerExtra?:''; ?>
     </div>
 </footer>
 <div class="offcanvas offcanvas-end" id="right-canvas" style="width: 80%;">
@@ -54,7 +55,7 @@
 </script>
 <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/bootstrap.min.js'); ?>" id="bootstrap-js"></script>
 <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/ajax-scroll.js'); ?>" id="ajax-scroll-js"></script>
-<script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/main.js'); ?>" id="main-js"></script>
+<script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/main.js?ver=2.0.1'); ?>" id="main-js"></script>
 <script>
 <?php if($this->options->needAjaxScroll && ($this->is('index')||$this->is('archive')||$this->is('category')||$this->is('tag')||$this->is('search'))):?>
 // ajax-scroll

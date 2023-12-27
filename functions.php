@@ -19,9 +19,9 @@ class Meayair
         $fileName = basename($currentURL);
         $fileNameCut = explode('.',$fileName);
         if($fileNameCut[0] == 'options-theme'){
-            // echo "<script src='" . Helper::options()->themeUrl . '/assets/admin/js/meaword-options-theme.js' . "'></script>";
-        }else if($fileNameCut[0] == 'write-post'){
-            $css = '<style>#custom-field input,textarea{width:100%;}</style>';echo $css;
+            // todo
+        }else if($fileNameCut[0] == 'write-post' || $fileNameCut[0] == 'write-page'){
+            $css = '<style>#custom-field input,textarea{width:100%;}.wmd-button-row{height:auto;}</style>';echo $css;
             echo "<script src='" . Helper::options()->themeUrl . '/assets/admin/js/write-post.js' . "'></script>";
         }
     }
@@ -49,8 +49,14 @@ function themeConfig($form) {
 
     $startYear = new Typecho_Widget_Helper_Form_Element_Text('startYear', NULL, NULL, _t('站点起始年份'), _t('在这里填入站点起始年份'));
     $form->addInput($startYear);
+    $statistics = new Typecho_Widget_Helper_Form_Element_Textarea('statistics', NULL, NULL, _t('统计代码'), _t('在这里填入统计代码，将会放在heade内'));
+    $form->addInput($statistics);
     $beianNum = new Typecho_Widget_Helper_Form_Element_Text('beianNum', NULL, NULL, _t('备案号'), _t('在这里填入站点备案号'));
     $form->addInput($beianNum);
+    $footerExtra = new Typecho_Widget_Helper_Form_Element_Textarea('footerExtra', NULL, NULL, _t('额外footer内容（html）'), _t('如果你有额外想添加到footer的内容，可以添加到这里'));
+    $form->addInput($footerExtra);
+    $shuoshuo = new Typecho_Widget_Helper_Form_Element_Text('shuoshuo', NULL, NULL, _t('说说'), _t('这里填写说说的分类号'));
+    $form->addInput($shuoshuo);
 }
 
 
@@ -91,6 +97,46 @@ function getFirstCharacter($title) {
     return 'M';
 }
 
+function getArchives($widget)
+{
+  $db = Typecho_Db::get();
+  $rows = $db->fetchAll(
+    $db
+      ->select()
+      ->from("table.contents")
+      ->order("table.contents.created", Typecho_Db::SORT_DESC)
+      ->where("table.contents.type = ?", "post")
+      ->where("table.contents.status = ?", "publish")
+  );
+
+  $stat = [];
+  $midShuoShuo = Helper::options() -> shuoshuo;
+  foreach ($rows as $row) {
+    $row = $widget->filter($row);
+    $isShuoshuo = 0;
+    if(!empty($midShuoShuo)){
+        $querymid = $db->select()->from('table.relationships')
+        ->where('table.relationships.cid = ?', $row["cid"]);
+
+        $mids = $db->fetchAll($querymid);
+        foreach ($mids as $mid) {
+            if($mid['mid'] == $midShuoShuo){
+                $isShuoshuo = 1;
+            }
+        }
+        if($isShuoshuo){continue;}
+    }
+    
+
+    $arr = [
+      "cid" => $row["cid"],
+      "title" => $row["title"],
+      "permalink" => $row["permalink"],
+    ];
+    $stat[date("Y", $row["created"])][$row["created"]] = $arr;
+  }
+  return $stat;
+}
 
 
 function theNextPrev($widget){
@@ -126,8 +172,11 @@ function getNextPrev($mode, $archive, $fields_name = ''){
         $sorted = Typecho_Db::SORT_ASC;
     }
 
+    $mid = $options -> shuoshuo;
     $query = $db->select()->from('table.contents')
         ->where($where, $archive->created)
+        ->join('table.relationships', 'table.contents.cid = table.relationships.cid', 'LEFT')
+        ->where('table.relationships.mid <> ? ', $mid)
         ->where('table.contents.status = ?', 'publish')
         ->where('table.contents.type = ?', $archive->type)
         ->where('table.contents.password IS NULL')
@@ -163,9 +212,9 @@ function replaceDownClock($matches){
     $string = $matches[1];
     $source_name = '？？？';
     $source_href = '';
-    $source_type = '未知';
-    $source_method = '未知';
-    $source_code = '无';
+    $source_type = '';
+    $source_method = '';
+    $source_code = '';
     
     $pattern = '/\[资源名称\]：\[(.*?)\]/s';
     if (preg_match($pattern, $string, $matches)) {
@@ -196,12 +245,21 @@ function replaceDownClock($matches){
     <div class=\"block-down-title\">
         <p>{$source_name}</p>
         <div class=\"block-down-button\"><p>点击下载</p>{$source_href}</div>
-    </div>
-    <div class=\"block-down-footer\">
-        <div class=\"block-down-info\"><span>类型：</span>{$source_type}</div>
-        <div class=\"block-down-info\"><span>方式：</span>{$source_method}</div>
-        <div class=\"block-down-info\"><span>提取码：</span>{$source_code}</div>
-    </div>
+    </div>";
+        $block_down_footer = "";
+        if(!empty($source_type)){
+            $block_down_footer .= "<div class=\"block-down-info\"><span>类型：</span>{$source_type}</div>";
+        }
+        if(!empty($source_method)){
+            $block_down_footer .= "<div class=\"block-down-info\"><span>方式：</span>{$source_method}</div>";
+        }
+        if(!empty($source_code)){
+            $block_down_footer .= "<div class=\"block-down-info\"><span>提取码：</span>{$source_code}</div>";
+        }
+        if(!empty($block_down_footer)){
+            $html .= "<div class=\"block-down-footer\">" . $block_down_footer . "</div>";
+        }
+        $html .= "
     </blockquote>";
     }
     return $html;

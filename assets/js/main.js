@@ -32,7 +32,7 @@ $(window).scroll(function(){
 
 
 //table预设calss
-$('.wznrys table').addClass("table");
+$('.meapost table').addClass("table");
 
 
 // 返回顶部
@@ -75,5 +75,5 @@ $(function(){
 });
 
 $(function(){
-  $(".wznrys").find("a").attr("target", "_blank");
+  $(".meapost").find("a").attr("target", "_blank");
 });

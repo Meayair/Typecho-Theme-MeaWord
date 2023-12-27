@@ -20,7 +20,7 @@ $this->need('common/header.php');
                     <span><?php $this->date(); ?></span>
                 </div>
             </div>
-			<article class="wznrys">
+			<article class="meapost">
                 <?php $this->content(); ?>
 			</article>
             <div class="post_tag">           
