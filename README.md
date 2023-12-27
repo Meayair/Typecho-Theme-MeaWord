@@ -9,7 +9,7 @@
 MeaWord是一款体现文字美感的极简主题，在大多数主题中，图片都都是体现主题美感的核心，但是这似乎把博客的重心从打磨文字偏向了寻找漂亮的图片，对此我希望这个主题能然我们专注于写作的同时依然保证网站美感。
 
 ![](https://www.bawge.com/usr/themes/MeaWord/screenshot.png)
-> 演示站点：[黑白格](https://www.bawge.com)，介绍文章：[MeaWord -- 一款体现文字美感的极简主题](https://www.bawge.com/archives/63.html)。
+> 演示站点：[黑白阁](https://www.bawge.com)，介绍文章：[MeaWord -- 一款体现文字美感的极简主题](https://www.bawge.com/archives/63.html)。
 
 ## 特性
 * 响应式设计，多段适配。
