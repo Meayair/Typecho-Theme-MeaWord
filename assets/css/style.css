@@ -951,6 +951,7 @@ img {
     margin-bottom: 15px;
     text-transform: uppercase;
     font-weight: bold;
+    min-height: 30px;
 }
 
 .footer p {
