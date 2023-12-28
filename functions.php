@@ -38,6 +38,12 @@ function themeConfig($form) {
     ), 0, _t('logo,标题显示状态'), _t('在这里选择logo,标题显示状态。'));
     $form->addInput($logoDisplay);
 
+    $mainColor = new Typecho_Widget_Helper_Form_Element_Text('mainColor', NULL, NULL, _t('主题色'), _t('填写颜色代码。<a href="https://www.bawge.com/archives/72.html">点击帮忙配色</a>'));
+    $form->addInput($mainColor);
+
+    $backgroundColor = new Typecho_Widget_Helper_Form_Element_Text('backgroundColor', NULL, NULL, _t('背景色'), _t('填写颜色代码。<a href="https://www.bawge.com/archives/72.html">点击帮忙配色</a>'));
+    $form->addInput($backgroundColor);
+
     $bannerIds = new Typecho_Widget_Helper_Form_Element_Text('bannerIds', NULL, NULL, _t('轮播设置'), _t('在这里输入文章cid,多个文章请用‘,’分隔'));
     $form->addInput($bannerIds);
 

@@ -55,7 +55,7 @@
 </script>
 <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/bootstrap.min.js'); ?>" id="bootstrap-js"></script>
 <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/ajax-scroll.js'); ?>" id="ajax-scroll-js"></script>
-<script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/main.js?ver=2.0.1'); ?>" id="main-js"></script>
+<script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/main.js?ver=2.0.1.1'); ?>" id="main-js"></script>
 <script>
 <?php if($this->options->needAjaxScroll && ($this->is('index')||$this->is('archive')||$this->is('category')||$this->is('tag')||$this->is('search'))):?>
 // ajax-scroll

@@ -553,7 +553,7 @@ img {
 /*index_post_loop*/
 .post-loop {
     z-index: 4;
-    background-color: #e6dece;
+    background-color: var(--bs-backguound);
     position: relative;
     background-image: url(../img/xt.svg);
     background-attachment: fixed;
@@ -936,7 +936,7 @@ img {
 
 /*footer*/
 .footer {
-    background: #e6dece;
+    background: var(--bs-backguound);
     position: relative;
     z-index: 5;
     padding-bottom: 50px;
