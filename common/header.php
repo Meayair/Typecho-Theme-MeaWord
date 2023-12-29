@@ -28,7 +28,7 @@
 <?php $bannerIdsArr = explode(",", $this->options->bannerIds);?>
 </head>
 <body class="home blog" >
-<style>:root{--bs-main:#b95d40}</style>
+<style>:root{--bs-main:<?php echo $this->options->mainColor?:'#b95d40'?>;--bs-backguound:<?php echo $this->options->backgroundColor?:'#e6dece'?>}</style>
 <header class="headbox">
 	<div class="container">
 		<div class="head_top">
