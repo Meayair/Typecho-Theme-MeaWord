@@ -111,7 +111,6 @@ $(document).on('click', '#wmd-checked-button', function() {
   }
 
 })
-
 $(document).on('click', '#wmd-uncheck-button', function() {
   textCurrent = $('#text')[0];
   start = textCurrent.selectionStart;
@@ -120,6 +119,29 @@ $(document).on('click', '#wmd-uncheck-button', function() {
 
   addHtml = 
 `<i class="bi bi-square"></i> `;
+  if(start !== end) {
+    textarea.value = value.slice(0, start) + addHtml + value.slice(end);
+    textCurrent.selectionStart = start;
+    textCurrent.selectionEnd = start + addHtml.length;
+  } else {
+    textCurrent.value = value.slice(0, start) + addHtml + value.slice(start);
+    textCurrent.selectionStart = start + addHtml.length;
+    textCurrent.selectionEnd = start + addHtml.length;
+  }
+
+})
+$(document).on('click', '#wmd-friend-button', function() {
+  textCurrent = $('#text')[0];
+  start = textCurrent.selectionStart;
+  end = textCurrent.selectionEnd;
+  value = textCurrent.value;
+
+  addHtml = 
+`
+<blockquote class="block-extra block-friend">
+
+</blockquote>
+`;
   if(start !== end) {
     textarea.value = value.slice(0, start) + addHtml + value.slice(end);
     textCurrent.selectionStart = start;
