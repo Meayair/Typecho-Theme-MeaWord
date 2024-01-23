@@ -12,6 +12,7 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
     color: #333;
     font-size: 14px;
+    word-break: break-all;
 }
 
 p {
