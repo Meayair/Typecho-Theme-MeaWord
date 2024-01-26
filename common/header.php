@@ -96,7 +96,7 @@
                             <?php endif?>
                             <h2><a class="" href="<?php $banner->permalink()?>" title="<?php $banner->title()?>"><?php $banner->title(); ?></a></h2>
                             <div class="banner_loop_info">
-                                <span><i class="bi bi-person me-2"></i><?php $this->author(); ?></span>
+                                <span><i class="bi bi-person me-2"></i><?php $banner->author(); ?></span>
                                 <?php
             			        	$categories = $banner->categories;
             			        	foreach($categories as $cate) {
@@ -105,7 +105,7 @@
             			        	    }
             			        	}
             			        ?>
-                                <span><i class="bi bi-calendar-date me-2"></i><?php $this->date(); ?></span>
+                                <span><i class="bi bi-calendar-date me-2"></i><?php $banner->date(); ?></span>
                             </div>
                         </div>
                     </div>
